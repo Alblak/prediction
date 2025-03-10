@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire Médical</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    
+        .form-container {
+            margin: 0 auto;
+            width: 40%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 form-container shadow-1">
+      
+        {% if resultat %}
+        <center><h4>Resultat </h4></center>
+        <p>a propos de votre operation </p>
+        <h5 class="mb-4">{{resultat}}</h5>
+        <a href="http://127.0.0.1:5000/" class="btn btn-dark">OK</a>
+
+        {% else  %}
+        <center><h4>Formulaire Médical apres operation</h4></center>
+                <form action="/predict" method="POST">
+                    <div class="form-group">
+                        <label for="age">Âge</label>
+                        <input type="number" class="form-control" id="age" name="age" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sexe">Sexe</label>
+                        <select class="form-control" id="sexe" name="sexe">
+                            <option value="1">M</option>
+                            <option value="0">F</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="maladies_chroniques">Maladies Chroniques</label>
+                        <select class="form-control" id="maladies_chroniques" name="maladies_chroniques">
+                            <option value="0">Aucune</option>
+                            <option value="1">Diabète</option>
+                            <option value="2">Asthme</option>
+                            <option value="3">Hypertension</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="allergies">Allergies</label>
+                        <select class="form-control" id="allergies" name="allergies">
+                            <option value="0">Aucune</option>
+                            <option value="1">Pénicilline</option>
+                            <option value="2">Aspirine</option>
+                            <option value="3">Latex</option>
+                            <option value="4">Pollen</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicaments_actuels">Médicaments Actuels</label>
+                        <select class="form-control" id="medicaments_actuels" name="medicaments_actuels">
+                            <option value="0">Aucune</option>
+                            <option value="1">Antihypertenseurs</option>
+                            <option value="2">Metformine</option>
+                            <option value="3">Inhalateur</option>
+                            <option value="4">Insuline</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="type_chirurgie">Type de Chirurgie</label>
+                        <select class="form-control" id="type_chirurgie" name="type_chirurgie">
+                            <option value="1">Appendicectomie</option>
+                            <option value="2">Prothèse de hanche</option>
+                            <option value="3">Cholécystectomie</option>
+                            <option value="4">Remplacement de genou</option>
+                            <option value="5">Hernie inguinale</option>
+                            <option value="6">Arthroscopie</option>
+                            <option value="7">Prostatectomie</option>
+                            <option value="8">Chirurgie de la colonne vertébrale</option>
+                            <option value="9">Chirurgie de la hernie</option>
+                            <option value="10">Remplacement de l'épaule</option>
+                            <option value="11">Chirurgie de la cheville</option>
+                            <option value="12">Chirurgie abdominale</option>
+                            <option value="13">Pontage coronarien</option>
+                            <option value="14">Chirurgie mammaire</option>
+                            <option value="15">Laparoscopie</option>
+                            <option value="16">Chirurgie du genou</option>
+                            <option value="17">Arthroplastie</option>
+                            <option value="18">Chirurgie de la hanche</option>
+                            <option value="19">Chirurgie de la main</option>
+                            <option value="20">Pontage gastrique</option>
+                            <option value="21">Remplacement de hanche</option>
+                            <option value="22">Chirurgie du coude</option>
+                            <option value="23">Laminectomie</option>
+                            <option value="24">Hystérectomie</option>
+                            <option value="25">Thyroïdectomie</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="anesthesie">Anesthésie</label>
+                        <select class="form-control" id="anesthesie" name="anesthesie">
+                            <option value="0">Générale</option>
+                            <option value="1">Locale</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="perte_sang">Perte de Sang</label>
+                        <input type="number" class="form-control" id="perte_sang" name="perte_sang">
+                    </div>
+                    <div class="form-group">
+                        <label for="utilisation_de_produits_sanguins">Utilisation de Produits Sanguins</label>
+                        <select class="form-control" id="utilisation_de_produits_sanguins" name="utilisation_de_produits_sanguins">
+                            <option value="0">Non</option>
+                            <option value="1">Oui</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Analyser</button>
+                </form>
+        {% endif %}
+    </div>
+    <footer>
+        <div class="row pt-5 mt-5 text-center ">
+            <div class="col-md-12 bg-dark text-white">
+              <div class="border-top pt-5">
+                <p>
+           
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by Albert Kambale
+             
+              </p>
+              </div>
+            </div>
+  
+          </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
