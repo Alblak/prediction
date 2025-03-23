@@ -19,4 +19,4 @@ def predict():
     resultat="OUI" if prediction[0]==1 else "NON"
     return render_template("index.html", resultat=f" presence de complicatation : {resultat}")
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=False)
